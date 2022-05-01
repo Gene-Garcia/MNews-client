@@ -11,15 +11,15 @@ using System.Text;
 
 namespace MalayanNews
 {
-    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme")]
-    public class AdminHomeActivity : Activity
+    [Activity(Label = "New Announcement", Theme = "@style/AppTheme")]
+    public class AdminPostAnnouncement : Activity
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             // Set our view from the "main" layout resource
-            SetContentView(Resource.Layout.activity_admin_home);
+            SetContentView(Resource.Layout.activity_admin_post_announcement);
 
             // Create your application here
         }
