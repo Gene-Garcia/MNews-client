@@ -29,12 +29,19 @@ namespace MalayanNews
 
             // onclick assignment
             this.adminBtn.Click += AdminBtn_Click;
+            this.studentBtn.Click += StudentBtn_Click;
         }
 
         private void AdminBtn_Click(object sender, EventArgs e)
         {
             Intent adminActivity = new Intent(this, typeof(AdminHomeActivity));
             StartActivity(adminActivity);
+        }
+
+        private void StudentBtn_Click(object sender, EventArgs e)
+        {
+            Intent announcementsActivity = new Intent(this, typeof(AnnouncementsActivity));
+            StartActivity(announcementsActivity);
         }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)

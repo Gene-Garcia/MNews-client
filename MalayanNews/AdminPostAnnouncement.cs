@@ -4,6 +4,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using AndroidX.AppCompat.App;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,8 +13,14 @@ using System.Text;
 namespace MalayanNews
 {
     [Activity(Label = "New Announcement", Theme = "@style/AppTheme")]
-    public class AdminPostAnnouncement : Activity
+    public class AdminPostAnnouncement : AppCompatActivity
     {
+        // components
+        Button uploadPostBtn;
+        TextView dateTextView;
+        EditText subjectEditText;
+        EditText contentEditText;
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -21,7 +28,23 @@ namespace MalayanNews
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_admin_post_announcement);
 
-            // Create your application here
+            // initialization
+            this.uploadPostBtn = FindViewById<Button>(Resource.Id.uploadPostBtn);
+            this.dateTextView = FindViewById<TextView>(Resource.Id.dateTextView);
+            this.subjectEditText = FindViewById<EditText>(Resource.Id.subjectEditText);
+            this.contentEditText = FindViewById<EditText>(Resource.Id.contentEditText);
+
+            this.dateTextView.Text = DateTime.Now.ToString();
+
+            // event assignment
+            this.uploadPostBtn.Click += this.UploadPost_Click;
+        }
+
+        private void UploadPost_Click(object sender, EventArgs e)
+        {
+            Intent homeAdminActivity = new Intent(this, typeof(AdminHomeActivity));
+            StartActivity(homeAdminActivity);
+        
         }
     }
 }

@@ -68,6 +68,7 @@
     <Compile Include="AnnouncementsActivity.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="AdminPostAnnouncement.cs" />
+    <Compile Include="Resources\ClickableAnnouncementAdapter.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Web References\mnews\Reference.cs">
@@ -156,6 +157,11 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\activity_announcements.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\_clickable_announcement_card_template.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

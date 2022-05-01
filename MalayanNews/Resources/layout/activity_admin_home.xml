@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="25dp">
+    android:orientation="vertical"
+    >
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/heading"
-        android:gravity="center">
+        android:gravity="center"
+        android:padding="25dp">
 
         <TextView
             android:text="Malayan News"
@@ -26,9 +28,21 @@
             android:text="New"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/button1"
+            android:id="@+id/addRedirectBtn"
             android:layout_alignParentEnd="true"/>
 
-     </RelativeLayout>
+    </RelativeLayout>
 
-</androidx.core.widget.NestedScrollView>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/announcementsForEditListView"
+            />
+
+    </RelativeLayout>
+
+</LinearLayout>
