@@ -64,6 +64,7 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminEditAnnouncement.cs" />
     <Compile Include="AdminHomeActivity.cs" />
     <Compile Include="AnnouncementsActivity.cs" />
     <Compile Include="MainActivity.cs" />
@@ -162,6 +163,11 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\_clickable_announcement_card_template.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\activity_admin_edit_announcement.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

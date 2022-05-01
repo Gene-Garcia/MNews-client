@@ -64,6 +64,9 @@ namespace MalayanNews
         private void AnnouncementList_Click(object sender, AdapterView.ItemClickEventArgs e)
         {
             Toast.MakeText(this, this.announcements[e.Position].subject, ToastLength.Short).Show();
+
+            Intent editPostActivity = new Intent(this, typeof(AdminEditAnnouncement));
+            StartActivity(editPostActivity);
         }
     }
 }
