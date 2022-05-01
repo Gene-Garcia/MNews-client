@@ -3,15 +3,28 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="25dp">
+    >
 
     <TextView
-        android:text="Malayan News"
+        android:text="Announcements"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minWidth="25px"
         android:minHeight="25px"
-        android:id="@+id/textView1"/>
+        android:id="@+id/textView1"
+        android:padding="25dp"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/announcementstListView"
+            />
+
+    </RelativeLayout>
 
 </LinearLayout>
