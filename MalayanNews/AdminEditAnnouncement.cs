@@ -12,7 +12,7 @@ using System.Text;
 
 namespace MalayanNews
 {
-    [Activity(Label = "Edit Announcement")]
+    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme")]
     public class AdminEditAnnouncement : AppCompatActivity
     {
         // components
