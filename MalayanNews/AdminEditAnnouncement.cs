@@ -21,6 +21,8 @@ namespace MalayanNews
         EditText subjectEditText;
         EditText contentEditText;
 
+        mnews.AnnouncementObject announcement;
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -34,12 +36,28 @@ namespace MalayanNews
             this.subjectEditText = FindViewById<EditText>(Resource.Id.subjectEditText);
             this.contentEditText = FindViewById<EditText>(Resource.Id.contentEditText);
 
-            this.dateTextView.Text = DateTime.Now.ToString();
+            // get intent data ~ data of announcement to be edited
+            int idx = Intent.GetIntExtra("announcementId", 0);
+
+            this.SoapServiceCall(idx);
+
+            // display data in fields
+            this.subjectEditText.Text = this.announcement.subject;
+            this.dateTextView.Text = this.announcement.uploadDate;
+            this.contentEditText.Text = this.announcement.content;
 
             // event assignment
             this.saveEditBtn.Click += this.SaveEdit_Click;
         }
 
+        private void SoapServiceCall(int idx)
+        {
+            mnews.MalayanNewsService service = new mnews.MalayanNewsService();
+
+            this.announcement = service.Announcement(idx);
+        }
+
+        // events
         private void SaveEdit_Click(object sender, EventArgs e)
         {
             Intent homeAdminActivity = new Intent(this, typeof(AdminHomeActivity));
