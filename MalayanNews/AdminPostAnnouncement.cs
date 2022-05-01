@@ -40,11 +40,40 @@ namespace MalayanNews
             this.uploadPostBtn.Click += this.UploadPost_Click;
         }
 
+        private Boolean Validate()
+        {
+            if (string.IsNullOrEmpty(this.subjectEditText.Text) || string.IsNullOrEmpty(this.contentEditText.Text)) return false;
+            else return true;
+        }
+
+        private string SoapServiceUpload()
+        {
+            mnews.MalayanNewsService service = new mnews.MalayanNewsService();
+
+            mnews.AnnouncementObject newAnn = new mnews.AnnouncementObject();
+
+            newAnn.subject = this.subjectEditText.Text;
+            newAnn.uploadDate = DateTime.Now.ToString();
+            newAnn.content = this.contentEditText.Text;
+
+            return service.PostAnnouncement(newAnn);
+        }
+
+        // event
         private void UploadPost_Click(object sender, EventArgs e)
         {
-            Intent homeAdminActivity = new Intent(this, typeof(AdminHomeActivity));
-            StartActivity(homeAdminActivity);
-        
+            if (!this.Validate())
+            {
+                Toast.MakeText(this, "Subject and content data fields are required", ToastLength.Short).Show();
+            } 
+            else
+            {
+                string message = this.SoapServiceUpload();
+                Toast.MakeText(this, message, ToastLength.Short).Show();
+
+                Intent homeAdminActivity = new Intent(this, typeof(AdminHomeActivity));
+                StartActivity(homeAdminActivity);
+            }
         }
     }
 }
