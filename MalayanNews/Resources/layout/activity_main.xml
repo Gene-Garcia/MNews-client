@@ -4,4 +4,44 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <TextView
+        android:text="Hello, what kind of user are you?"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView1"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="30dp"/>
+
+    <RelativeLayout
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/relativeLayout1"
+        android:layout_below="@id/textView1"
+        android:gravity="center">
+
+            <Button
+                android:text="Student"
+                android:layout_width="150dp"
+                android:layout_height="60dp"
+                android:minWidth="25px"
+                android:minHeight="25px"
+                android:id="@+id/studentBtn"
+                android:layout_marginVertical="7dp"/>
+
+            <Button
+                android:text="Admin"
+                android:layout_width="150dp"
+                android:layout_height="60dp"
+                android:minWidth="25px"
+                android:minHeight="25px"
+                android:id="@+id/adminBtn"
+                android:layout_below="@+id/studentBtn"
+                android:layout_marginVertical="7dp"/>
+
+     </RelativeLayout>
+
 </RelativeLayout>
