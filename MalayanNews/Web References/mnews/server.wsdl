@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tns="http://192.168.1.16/mnews/MNews-server/server.php" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://192.168.1.16/mnews/MNews-server/server.php" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://192.168.1.16/mnews/MNews-server/server.php">
+      <xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+      <xsd:import namespace="http://schemas.xmlsoap.org/wsdl/" />
+      <xsd:complexType name="AnnouncementObject">
+        <xsd:all>
+          <xsd:element name="id" type="xsd:string" />
+          <xsd:element name="subject" type="xsd:string" />
+          <xsd:element name="uploadDate" type="xsd:string" />
+          <xsd:element name="content" type="xsd:string" />
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfAnnouncements">
+        <xsd:complexContent mixed="false">
+          <xsd:restriction base="SOAP-ENC:Array">
+            <xsd:attribute wsdl:arrayType="tns:AnnouncementObject[]" ref="SOAP-ENC:arrayType" />
+          </xsd:restriction>
+        </xsd:complexContent>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="AnnouncementsRequest" />
+  <wsdl:message name="AnnouncementsResponse">
+    <wsdl:part name="return" type="tns:ArrayOfAnnouncements" />
+  </wsdl:message>
+  <wsdl:message name="AnnouncementRequest">
+    <wsdl:part name="idx" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="AnnouncementResponse">
+    <wsdl:part name="return" type="tns:AnnouncementObject" />
+  </wsdl:message>
+  <wsdl:message name="PostAnnouncementRequest">
+    <wsdl:part name="announcement" type="tns:AnnouncementObject" />
+  </wsdl:message>
+  <wsdl:message name="PostAnnouncementResponse">
+    <wsdl:part name="return" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="EditAnnouncementRequest">
+    <wsdl:part name="announcement" type="tns:AnnouncementObject" />
+  </wsdl:message>
+  <wsdl:message name="EditAnnouncementResponse">
+    <wsdl:part name="return" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="DeleteAnnouncementRequest">
+    <wsdl:part name="id" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="DeleteAnnouncementResponse">
+    <wsdl:part name="return" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:portType name="MalayanNewsServicePortType">
+    <wsdl:operation name="Announcements">
+      <documentation>Get all available announcements from mnews server</documentation>
+      <wsdl:input message="tns:AnnouncementsRequest" />
+      <wsdl:output message="tns:AnnouncementsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="Announcement">
+      <documentation>Get an announcement by announcement Id</documentation>
+      <wsdl:input message="tns:AnnouncementRequest" />
+      <wsdl:output message="tns:AnnouncementResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="PostAnnouncement">
+      <documentation>Post a new announcement</documentation>
+      <wsdl:input message="tns:PostAnnouncementRequest" />
+      <wsdl:output message="tns:PostAnnouncementResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="EditAnnouncement">
+      <documentation>Update an announcement</documentation>
+      <wsdl:input message="tns:EditAnnouncementRequest" />
+      <wsdl:output message="tns:EditAnnouncementResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAnnouncement">
+      <documentation>Delete an announcement by announcement Id</documentation>
+      <wsdl:input message="tns:DeleteAnnouncementRequest" />
+      <wsdl:output message="tns:DeleteAnnouncementResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="MalayanNewsServiceBinding" type="tns:MalayanNewsServicePortType">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc" />
+    <wsdl:operation name="Announcements">
+      <soap:operation soapAction="http://192.168.1.16/mnews/MNews-server/server.php/Announcements" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://192.168.1.16/mnews/MNews-server/server.php" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://192.168.1.16/mnews/MNews-server/server.php" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Announcement">
+      <soap:operation soapAction="http://192.168.1.16/mnews/MNews-server/server.php/Announcement" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://192.168.1.16/mnews/MNews-server/server.php" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://192.168.1.16/mnews/MNews-server/server.php" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PostAnnouncement">
+      <soap:operation soapAction="http://192.168.1.16/mnews/MNews-server/server.php/PostAnnouncement" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://192.168.1.16/mnews/MNews-server/server.php" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://192.168.1.16/mnews/MNews-server/server.php" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditAnnouncement">
+      <soap:operation soapAction="http://192.168.1.16/mnews/MNews-server/server.php/EditAnnouncement" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://192.168.1.16/mnews/MNews-server/server.php" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://192.168.1.16/mnews/MNews-server/server.php" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAnnouncement">
+      <soap:operation soapAction="http://192.168.1.16/mnews/MNews-server/server.php/DeleteAnnouncement" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://192.168.1.16/mnews/MNews-server/server.php" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://192.168.1.16/mnews/MNews-server/server.php" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="MalayanNewsService">
+    <wsdl:port name="MalayanNewsServicePort" binding="tns:MalayanNewsServiceBinding">
+      <soap:address location="http://192.168.1.16/mnews/MNews-server/server.php" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
