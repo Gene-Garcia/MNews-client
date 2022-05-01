@@ -36,22 +36,20 @@ namespace MalayanNews
             // onclick assignment
             this.addRedirectBtn.Click += this.RedirectBtn_Click;
 
-            // assignment of adapter to list view and configurations
-            this.announcements = new List<mnews.AnnouncementObject>();
-            for (int i = 0; i <= 10; i++)
-            {
-                mnews.AnnouncementObject temp = new mnews.AnnouncementObject();
-                temp.id = 1;
-                temp.subject = "subject " + i;
-                temp.content = "content " + i;
-                temp.uploadDate = DateTime.Now.ToString();
-                announcements.Add(temp);
-            }
+            this.SoapServiceCall();
 
+            // assignment of adapter to list view and configurations
             ClickableAnnouncementAdapter adapter = new ClickableAnnouncementAdapter(this, announcements);
             announcementsListView.Adapter = adapter;
 
             this.announcementsListView.ItemClick += this.AnnouncementList_Click;
+        }
+
+        private void SoapServiceCall()
+        {
+            mnews.MalayanNewsService service = new mnews.MalayanNewsService();
+
+            this.announcements = service.Announcements().ToList();
         }
 
         // events
