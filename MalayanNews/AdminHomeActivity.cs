@@ -20,6 +20,8 @@ namespace MalayanNews
         Button addRedirectBtn;
         ListView announcementsListView;
 
+        List<mnews.AnnouncementObject> announcements;
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -35,7 +37,7 @@ namespace MalayanNews
             this.addRedirectBtn.Click += this.RedirectBtn_Click;
 
             // assignment of adapter to list view and configurations
-            List<mnews.AnnouncementObject> announcements = new List<mnews.AnnouncementObject>();
+            this.announcements = new List<mnews.AnnouncementObject>();
             for (int i = 0; i <= 10; i++)
             {
                 mnews.AnnouncementObject temp = new mnews.AnnouncementObject();
@@ -48,6 +50,8 @@ namespace MalayanNews
 
             ClickableAnnouncementAdapter adapter = new ClickableAnnouncementAdapter(this, announcements);
             announcementsListView.Adapter = adapter;
+
+            this.announcementsListView.ItemClick += this.AnnouncementList_Click;
         }
 
         // events
@@ -55,6 +59,11 @@ namespace MalayanNews
         {
             Intent postAnnouncementActivity = new Intent(this, typeof(AdminPostAnnouncement));
             StartActivity(postAnnouncementActivity);
+        }
+
+        private void AnnouncementList_Click(object sender, AdapterView.ItemClickEventArgs e)
+        {
+            Toast.MakeText(this, this.announcements[e.Position].subject, ToastLength.Short).Show();
         }
     }
 }
