@@ -79,6 +79,17 @@
         </RelativeLayout>
 
         <Button
+            android:text="Delete POST"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/deleteBtn"
+            android:layout_toLeftOf="@+id/saveEditBtn"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="15dp"
+            android:backgroundTint="#ffc63c3c" 
+            />
+
+        <Button
             android:text="Save Edit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

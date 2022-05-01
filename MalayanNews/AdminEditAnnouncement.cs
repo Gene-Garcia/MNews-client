@@ -17,10 +17,12 @@ namespace MalayanNews
     {
         // components
         Button saveEditBtn;
+        Button deleteBtn;
         TextView dateTextView;
         EditText subjectEditText;
         EditText contentEditText;
 
+        int idx;
         mnews.AnnouncementObject announcement;
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -32,14 +34,15 @@ namespace MalayanNews
 
             // initialization
             this.saveEditBtn = FindViewById<Button>(Resource.Id.saveEditBtn);
+            this.deleteBtn = FindViewById<Button>(Resource.Id.deleteBtn);
             this.dateTextView = FindViewById<TextView>(Resource.Id.dateTextView);
             this.subjectEditText = FindViewById<EditText>(Resource.Id.subjectEditText);
             this.contentEditText = FindViewById<EditText>(Resource.Id.contentEditText);
 
             // get intent data ~ data of announcement to be edited
-            int idx = Intent.GetIntExtra("announcementId", 0);
+            this.idx = Intent.GetIntExtra("announcementId", 0);
 
-            this.SoapServiceGet(idx);
+            this.SoapServiceGet();
 
             // display data in fields
             this.subjectEditText.Text = this.announcement.subject;
@@ -48,13 +51,14 @@ namespace MalayanNews
 
             // event assignment
             this.saveEditBtn.Click += this.SaveEdit_Click;
+            this.deleteBtn.Click += this.Delete_Click;
         }
 
-        private void SoapServiceGet(int idx)
+        private void SoapServiceGet()
         {
             mnews.MalayanNewsService service = new mnews.MalayanNewsService();
 
-            this.announcement = service.Announcement(idx);
+            this.announcement = service.Announcement(this.idx);
         }
 
         private Boolean Validate()
@@ -74,6 +78,13 @@ namespace MalayanNews
             return service.EditAnnouncement(announcement);
         }
 
+        private string SoapServiceDelete()
+        {
+            mnews.MalayanNewsService service = new mnews.MalayanNewsService();
+
+            return service.DeleteAnnouncement(this.idx);
+        }
+
         // events
         private void SaveEdit_Click(object sender, EventArgs e)
         {
@@ -90,6 +101,30 @@ namespace MalayanNews
                 StartActivity(homeAdminActivity);
             }
         }
+
+        private void Delete_Click(object sender, EventArgs e)
+        {
+            // confirmation alert
+            Android.App.AlertDialog.Builder dialog = new Android.App.AlertDialog.Builder(this);
+            Android.App.AlertDialog alert = dialog.Create();
+            alert.SetTitle("Announcement Deletion");
+            alert.SetMessage("Confirm the deletion of this announcement");
+
+            alert.SetButton("OK", (c, ev) =>
+            {
+                string message = this.SoapServiceDelete();
+                Toast.MakeText(this, message, ToastLength.Short).Show();
+
+                Intent homeAdminActivity = new Intent(this, typeof(AdminHomeActivity));
+                StartActivity(homeAdminActivity);
+
+            });
+
+            alert.SetButton2("CANCEL", (c, ev) => { });
+
+            alert.Show();
+        }
+
     }
 
 }
