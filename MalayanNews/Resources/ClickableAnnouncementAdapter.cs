@@ -41,7 +41,7 @@ namespace MalayanNews.Resources
 
         public override Java.Lang.Object GetItem(int position)
         {
-            return this.announcements[position];
+            return null;
         }
 
         public override long GetItemId(int position)
