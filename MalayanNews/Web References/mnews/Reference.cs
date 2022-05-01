@@ -123,19 +123,19 @@ namespace MalayanNews.mnews {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapRpcMethodAttribute("http://192.168.1.16/mnews/MNews-server/server.php/Announcement", RequestNamespace="http://192.168.1.16/mnews/MNews-server/server.php", ResponseNamespace="http://192.168.1.16/mnews/MNews-server/server.php")]
         [return: System.Xml.Serialization.SoapElementAttribute("return")]
-        public AnnouncementObject Announcement(string idx) {
+        public AnnouncementObject Announcement(int idx) {
             object[] results = this.Invoke("Announcement", new object[] {
                         idx});
             return ((AnnouncementObject)(results[0]));
         }
         
         /// <remarks/>
-        public void AnnouncementAsync(string idx) {
+        public void AnnouncementAsync(int idx) {
             this.AnnouncementAsync(idx, null);
         }
         
         /// <remarks/>
-        public void AnnouncementAsync(string idx, object userState) {
+        public void AnnouncementAsync(int idx, object userState) {
             if ((this.AnnouncementOperationCompleted == null)) {
                 this.AnnouncementOperationCompleted = new System.Threading.SendOrPostCallback(this.OnAnnouncementOperationCompleted);
             }
@@ -213,24 +213,24 @@ namespace MalayanNews.mnews {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapRpcMethodAttribute("http://192.168.1.16/mnews/MNews-server/server.php/DeleteAnnouncement", RequestNamespace="http://192.168.1.16/mnews/MNews-server/server.php", ResponseNamespace="http://192.168.1.16/mnews/MNews-server/server.php")]
         [return: System.Xml.Serialization.SoapElementAttribute("return")]
-        public string DeleteAnnouncement(string id) {
+        public string DeleteAnnouncement(int idx) {
             object[] results = this.Invoke("DeleteAnnouncement", new object[] {
-                        id});
+                        idx});
             return ((string)(results[0]));
         }
         
         /// <remarks/>
-        public void DeleteAnnouncementAsync(string id) {
-            this.DeleteAnnouncementAsync(id, null);
+        public void DeleteAnnouncementAsync(int idx) {
+            this.DeleteAnnouncementAsync(idx, null);
         }
         
         /// <remarks/>
-        public void DeleteAnnouncementAsync(string id, object userState) {
+        public void DeleteAnnouncementAsync(int idx, object userState) {
             if ((this.DeleteAnnouncementOperationCompleted == null)) {
                 this.DeleteAnnouncementOperationCompleted = new System.Threading.SendOrPostCallback(this.OnDeleteAnnouncementOperationCompleted);
             }
             this.InvokeAsync("DeleteAnnouncement", new object[] {
-                        id}, this.DeleteAnnouncementOperationCompleted, userState);
+                        idx}, this.DeleteAnnouncementOperationCompleted, userState);
         }
         
         private void OnDeleteAnnouncementOperationCompleted(object arg) {
@@ -267,7 +267,7 @@ namespace MalayanNews.mnews {
     [System.Xml.Serialization.SoapTypeAttribute(Namespace="http://192.168.1.16/mnews/MNews-server/server.php")]
     public partial class AnnouncementObject {
         
-        private string idField;
+        private int idField;
         
         private string subjectField;
         
@@ -276,7 +276,7 @@ namespace MalayanNews.mnews {
         private string contentField;
         
         /// <remarks/>
-        public string id {
+        public int id {
             get {
                 return this.idField;
             }

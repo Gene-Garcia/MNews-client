@@ -6,7 +6,7 @@
       <xsd:import namespace="http://schemas.xmlsoap.org/wsdl/" />
       <xsd:complexType name="AnnouncementObject">
         <xsd:all>
-          <xsd:element name="id" type="xsd:string" />
+          <xsd:element name="id" type="xsd:int" />
           <xsd:element name="subject" type="xsd:string" />
           <xsd:element name="uploadDate" type="xsd:string" />
           <xsd:element name="content" type="xsd:string" />
@@ -26,7 +26,7 @@
     <wsdl:part name="return" type="tns:ArrayOfAnnouncements" />
   </wsdl:message>
   <wsdl:message name="AnnouncementRequest">
-    <wsdl:part name="idx" type="xsd:string" />
+    <wsdl:part name="idx" type="xsd:int" />
   </wsdl:message>
   <wsdl:message name="AnnouncementResponse">
     <wsdl:part name="return" type="tns:AnnouncementObject" />
@@ -44,7 +44,7 @@
     <wsdl:part name="return" type="xsd:string" />
   </wsdl:message>
   <wsdl:message name="DeleteAnnouncementRequest">
-    <wsdl:part name="id" type="xsd:string" />
+    <wsdl:part name="idx" type="xsd:int" />
   </wsdl:message>
   <wsdl:message name="DeleteAnnouncementResponse">
     <wsdl:part name="return" type="xsd:string" />

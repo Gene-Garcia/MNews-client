@@ -39,7 +39,7 @@ namespace MalayanNews
             for (int i = 0; i <= 10; i++)
             {
                 mnews.AnnouncementObject temp = new mnews.AnnouncementObject();
-                temp.id = "1234";
+                temp.id = 1;
                 temp.subject = "subject " + i;
                 temp.content = "content " + i;
                 temp.uploadDate = DateTime.Now.ToString();
